@@ -24,7 +24,15 @@ from mazemods import stayEastCost
 def depthFirstSearch(xI, xG, n, m, O):
     """
     Search the deepest nodes in the search tree first.
- 
+
+      Your search algorithm needs to return a list of actions
+      and a path that reaches the goal.  
+      Make sure to implement a graph search algorithm.
+      Your algorithm also needs to return the cost of the path. 
+      Use the getCostOfActions function to do this.
+      Finally, the algorithm should return the number of visited
+      nodes in your search.
+    
     Returns:
       actions, cost, num_visited, path
     """
@@ -60,7 +68,15 @@ def depthFirstSearch(xI, xG, n, m, O):
 def breadthFirstSearch(xI, xG, n, m, O):
     """
     Search the shallowest nodes in the search tree first.
- 
+
+      Your search algorithm needs to return a list of actions
+      and a path that reaches the goal. Make sure to implement a graph 
+      search algorithm.
+      Your algorithm also needs to return the cost of the path. 
+      Use the getCostOfActions function to do this.
+      Finally, the algorithm should return the number of visited
+      nodes in your search.
+      
     Returns:
       actions, cost, num_visited, path
     """
@@ -96,6 +112,14 @@ def DijkstraSearch(xI, xG, n, m, O, cost=stayWestCost):
     """
     Search the nodes with least cost first.
   
+      Your search algorithm needs to return a list of actions
+      and a path that reaches the goal. Make sure to implement a graph 
+      search algorithm.
+      Your algorithm also needs to return the total cost of the path using
+      either the stayWestCost or stayEastCost function.
+      Finally, the algorithm should return the number of visited
+      nodes in your search.
+      
     Returns:
       actions, total_cost, num_visited, path
     """
@@ -155,6 +179,14 @@ def aStarSearch(xI, xG, n, m, O, heuristic=nullHeuristic):
     """
     Search the node that has the lowest combined cost and heuristic first.
 
+    The function uses a function heuristic as an argument. We have used
+    the null heuristic here first, you should redefine heuristics as part of 
+    the homework. 
+    Your algorithm also needs to return the total cost of the path using
+    getCostofActions functions. 
+    Finally, the algorithm should return the number of visited
+    nodes during the search.
+    
     Returns:
       actions, total_cost, num_visited, path
     """
@@ -213,6 +245,20 @@ if __name__ == '__main__':
     #maze(n,m,O) # prints the maze
     plt.close('all')
 
+    # Sample collision check
+    #x, u = (5,4), (1,0)
+    #testObs = [[6,6,4,4]]
+    #collided = collisionCheck(x,u,testObs)
+    #print('Collision!' if collided else 'No collision!')
+    
+    # Sample path plotted to goal
+    #xI = (1,1)
+    #xG = (20,2)
+    #actions = [(1,0),(1,0),(1,0),(1,0),(1,0),(1,0),(1,0),(1,0),(1,0),(0,1),
+    #           (1,0),(1,0),(1,0),(0,-1),(1,0),(1,0),(1,0),(1,0),(1,0),(1,0)]
+    #path = getPathFromActions(xI,actions)
+    #showPath(xI,xG,path,n,m,O)
+    
     # Start and goal
     xI = (1, 1)
     xG = (34, 16)
