@@ -99,8 +99,8 @@ def valueIteration(gamma, eta, grid):
     P = transitionMatrix(grid, eta)
 
     tolerance = 1e-3                            # Convergence error
-    V = np.zeros([grid.n, grid.m])              # Value function
-    pi = np.zeros([grid.n, grid.m], dtype=int)  # Policy
+    V = np.zeros((grid.n, grid.m))              # Value function
+    pi = np.zeros((grid.n, grid.m), dtype=int)  # Policy
     iterations = 0                              # No. of iterations
 
     # ------- Your code goes here -------
@@ -204,10 +204,10 @@ params = {
     # For parts c and d, fill in the values of gamma and eta that
     # result in the desired behavior
     'c': [0.5, 0.1],
-    'd1': [0.9, 0.2],
-    'd2': [0.9, 0.2],
-    'd3': [0.9, 0.2],
-    'd4': [0.9, 0.2],
+    'd1': [0.4, 0.02], # Close exit, risking the cliff
+    'd2': [0.3, 0.2], # Close exit, avoiding the cliff
+    'd3': [0.9, 0.2], # Far exit, risking the cliff
+    'd4': [0.9, 0.5], # Far exit, avoiding the cliff
 }
 
 if __name__ == '__main__':
@@ -237,8 +237,12 @@ if __name__ == '__main__':
     print(f"Part (c): gamma: {gamma} , eta: {eta}.")
 
     # Add these to verify:
-    mediumGrid.printPolicy(pi)
-    mediumGrid.printValues(V)
+    #mediumGrid.printPolicy(pi)
+    # mediumGrid.printValues(V)
+    
+    path = mediumGrid.getNominalPathFromPolicy(pi)
+    mediumGrid.plotPath(path, show=True)
+    print(path)
 
     # ---------- Part (d) ----------- #
     # Change the values in `params` above to get the desired behavior
@@ -248,32 +252,48 @@ if __name__ == '__main__':
     gamma, eta = params['d1']
     print(f"Part (d) 1): gamma: {gamma}, eta: {eta}.")
     V, pi, _ = valueIteration(gamma, eta, mediumGridBridge)
+    
+    path = mediumGrid.getNominalPathFromPolicy(pi)
+    mediumGrid.plotPath(path, show=True)
+    print(path)
 
     # 2) Close exit, avoiding the cliff
     gamma, eta = params['d2']
     print(f"Part (d) 2): gamma: {gamma}, eta: {eta}.")
     V, pi, _ = valueIteration(gamma, eta, mediumGridBridge)
-
+    
+    path = mediumGrid.getNominalPathFromPolicy(pi)
+    mediumGrid.plotPath(path, show=True)
+    print(path)
+    
     # 3) Far exit, risking the cliff
     gamma, eta = params['d3']
     print(f"Part (d) 3): gamma: {gamma}, eta: {eta}.")
     V, pi, _ = valueIteration(gamma, eta, mediumGridBridge)
+    
+    path = mediumGrid.getNominalPathFromPolicy(pi)
+    mediumGrid.plotPath(path, show=True)
+    print(path)
 
     # 4) Far exit, avoiding the cliff
     gamma, eta = params['d4']
     print(f"Part (d) 4): gamma: {gamma}, eta: {eta}.")
     V, pi, _ = valueIteration(gamma, eta, mediumGridBridge)
 
+    path = mediumGrid.getNominalPathFromPolicy(pi)
+    mediumGrid.plotPath(path, show=True)
+    print(path)
+    
 ############################################################################
 # Part 4: In this final part we demonstrate some of the plotting and
 # printing functions available for visualizing and debugging the
 # results of your algorithms.
 ############################################################################
 
-    if True:  # Change this to true to see the output
+    if False:  # Change this to true to see the output
         # Example policy and value function
-        # V = np.random.rand(mediumGrid.n, mediumGrid.m)
-        # pi = np.ones((mediumGrid.n, mediumGrid.m), dtype=int)  # Always up
+        V = np.random.rand(mediumGrid.n, mediumGrid.m)
+        pi = np.ones((mediumGrid.n, mediumGrid.m), dtype=int)  # Always up
 
         # Plot the empty grid with start, goal, and penalty locations marked
         # To plot on the small grid instead, use smallGrid.plot
